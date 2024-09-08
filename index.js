@@ -1,4 +1,11 @@
+/**
+ * @type {{description: string, completed: boolean, createdAt: Date}[]}
+ */
 let tasks = [];
+
+/**
+ * @param {string} task
+ */
 
 function addTask(task) {
     if (task !== "") {
@@ -21,6 +28,9 @@ function showTasks() {
     }
 }
 
+/**
+ * @param {number} index
+ */
 function deleteTask(index) {
     if (index >= 0 && index < tasks.length) {
         let removed = tasks.splice(index, 1);
@@ -30,6 +40,9 @@ function deleteTask(index) {
     }
 }
 
+/**
+ * @param {number} index
+ */
 function completeTask(index) {
     if (index >= 0 && index < tasks.length) {
         tasks[index].completed = true;
@@ -39,10 +52,13 @@ function completeTask(index) {
     }
 }
 
+/**
+ * @param {string} keyword
+ */
 function searchTask(keyword) {
     let foundTasks = tasks.filter(task => task.description.includes(keyword));
     if (foundTasks.length > 0) {
-        console.log(`Знайдені задачи с ключовими словами "${keyword}":`);
+        console.log(`Найдены задачи с ключевым словом "${keyword}":`);
         foundTasks.forEach((task, index) => {
             let status = task.completed ? "[x]" : "[ ]";
             console.log(`${index + 1}. ${status} ${task.description}`);
@@ -52,12 +68,16 @@ function searchTask(keyword) {
     }
 }
 
+/**
+ * @param {number} index
+ * @param {string} newDescription
+ */
 function editTask(index, newDescription) {
     if (index >= 0 && index < tasks.length && newDescription !== "") {
         console.log(`Задача "${tasks[index].description}" змінена на "${newDescription}".`);
         tasks[index].description = newDescription;
     } else {
-        console.log("Некоректний индекс або пустий опис.");
+        console.log("Некорректный индекс задачи чи пустий опис.");
     }
 }
 
@@ -135,6 +155,10 @@ showOldestTask();
 showNewestTask();
 
 taskSummary();
+
+clearAllTasks();
+
+showTasks();
 
 clearAllTasks();
 
